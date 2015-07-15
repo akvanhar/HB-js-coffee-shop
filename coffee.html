@@ -47,33 +47,55 @@
 
     // Set these 3 variables to their DOM elements
 
-    var myImage=document.getElementById("coffee_image");
-    var myRevenueMessage=document.getElementById("revenue");
+    var myImage = document.getElementById("coffee_image");
+    var myRevenueMessage = document.getElementById("revenue");
 
     myImage.setAttribute('src', './static/coffee_beans.jpg');
 
     //a function that changes the coffee bean image to the coffee mug image
     function mugCoffeeImg(evt) {
         myImage.setAttribute('src', './static/coffee_mug.jpg');
-        console.dir(evt);
     }
 
         function resetCoffeeImg(evt) {
         myImage.setAttribute('src', './static/coffee_beans.jpg');
-        console.dir(evt);
     }
     //Function that switches img to the brewer for 500ms then reverts back to the beans
-    function coffeeBrewerImg(evt) {
+
+    var drinksOrdered = []
+
+    //makes a coffee with the specified 'drinkType'
+    function makeCoffee(drinkType) {
         myImage.setAttribute('src', './static/coffee_machine.jpg');
+        drinksOrdered.push(drinkType);
+        console.log(drinksOrdered);
+
         setTimeout(mugCoffeeImg, 1000);
         setTimeout(resetCoffeeImg, 2500);
-        console.dir(evt);
+        // console.dir(evt);
     }
 
-    //event handler to have a click brew coffee
-    var coffeeImage = document.getElementById("coffee_image");
-    coffeeImage.addEventListener('click', coffeeBrewerImg);
+   //event handler to have a click brew coffee of the specified type
+    myImage.addEventListener('click', function() {
+                                            makeCoffee("brew");
+                                        });
 
+    //event handlers listening to the drink buttons
+    var espresso = document.getElementById("espresso");
+    espresso.addEventListener('click', function() {
+                                            makeCoffee("espresso");
+                                        });
+    
+    var latte = document.getElementById("latte");
+    latte.addEventListener('click', function() {
+                                            makeCoffee("latte");
+                                        });
+
+    var hotChocolate = document.getElementById("hot-chocolate")
+    hotChocolate.addEventListener('click', function() {
+                                            makeCoffee("Hot Chocolate");
+                                        });
+ 
     // use this dictionary in further study step
 
     var prices = {
