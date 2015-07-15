@@ -47,8 +47,32 @@
 
     // Set these 3 variables to their DOM elements
 
-    var myImage;
-    var myRevenueMessage;
+    var myImage=document.getElementById("coffee_image");
+    var myRevenueMessage=document.getElementById("revenue");
+
+    myImage.setAttribute('src', './static/coffee_beans.jpg');
+
+    //a function that changes the coffee bean image to the coffee mug image
+    function mugCoffeeImg(evt) {
+        myImage.setAttribute('src', './static/coffee_mug.jpg');
+        console.dir(evt);
+    }
+
+        function resetCoffeeImg(evt) {
+        myImage.setAttribute('src', './static/coffee_beans.jpg');
+        console.dir(evt);
+    }
+    //Function that switches img to the brewer for 500ms then reverts back to the beans
+    function coffeeBrewerImg(evt) {
+        myImage.setAttribute('src', './static/coffee_machine.jpg');
+        setTimeout(mugCoffeeImg, 1000);
+        setTimeout(resetCoffeeImg, 2500);
+        console.dir(evt);
+    }
+
+    //event handler to have a click brew coffee
+    var coffeeImage = document.getElementById("coffee_image");
+    coffeeImage.addEventListener('click', coffeeBrewerImg);
 
     // use this dictionary in further study step
 
